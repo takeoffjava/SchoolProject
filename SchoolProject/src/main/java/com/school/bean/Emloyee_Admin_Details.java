@@ -19,29 +19,29 @@ public class Emloyee_Admin_Details {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "clm_Emp_Admin_Id", columnDefinition = "bigint(10) unsigned not null", nullable = false)
 	private int emp_Admin_Id;
-	
+
 	@OneToOne
 	@JoinColumn(referencedColumnName = "clm_Emp_Id", name = "fk_clm_Emp_Admin_Id", columnDefinition = "bigint(10) unsigned not null")
 	private Employee_Details emp_Admin_emp_Details;
-	
+
 	@Column(name = "clm_Emp_Admin_Last_Salary", columnDefinition = "float(13,2) default 0")
 	private float emp_Admin_Last_Salary;
-	
+
 	@Column(name = "clm_Emp_Admin_Current_Salary", columnDefinition = "float(13,2) default 0")
 	private float emp_Admin_Current_Salary;
-	
+
 	@Column(name = "clm_Emp_Admin_Last_Rating", columnDefinition = "int(4) default 0")
 	private int emp_Admin_Last_Rating;
-	
+
 	@Column(name = "clm_Emp_Admin_Rating", columnDefinition = "int(4) default 0")
 	private int emp_Admin_Rating;
-	
+
 	@Column(name = "clm_Emp_Admin_Advanced_Amount", columnDefinition = "float(13,2) default 0")
 	private float emp_Admin_Advanced_Amount;
-	
+
 	@Column(name = "clm_Emp_Admin_Transport_Fee", columnDefinition = "float(13,2) default 0")
 	private float emp_Admin_Transport_Fee;
-	
+
 	@Column(name = "clm_Emp_Admin_Created_Date", columnDefinition = "timestamp default now()", nullable = true)
 	private Date emp_Admin_Created_Date;
 
@@ -127,6 +127,5 @@ public class Emloyee_Admin_Details {
 	public void setEmp_Admin_Updated_Date(Date emp_Admin_Updated_Date) {
 		this.emp_Admin_Updated_Date = emp_Admin_Updated_Date;
 	}
-	
-	
+
 }
