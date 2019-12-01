@@ -35,15 +35,17 @@ public class JobRoleServiceImp implements JobRoleService {
 		return jobRoleDao.findAllJobRoles();
 	}
 
-	public boolean updateAllJobRole(Job_Role newJobRole,Job_Role ExistJobRole) {
-		
-		
-		  if(newJobRole.getJob_Name()!=null) {
-			  ExistJobRole.setJob_Name(newJobRole.getJob_Name());
-		  }
-		  if(newJobRole.isIs_Active()!=ExistJobRole.isIs_Active())
-			  ExistJobRole.setIs_Active(newJobRole.isIs_Active());
-		 
-		return jobRoleDao.updateAllJobRole(newJobRole,ExistJobRole);
+	public boolean updateAllJobRole(Job_Role newJobRole, Job_Role ExistJobRole) {
+
+		if (newJobRole.getJob_Name() != null) {
+			ExistJobRole.setJob_Name(newJobRole.getJob_Name());
+		}
+		if (newJobRole.isIs_Active() != ExistJobRole.isIs_Active())
+			ExistJobRole.setIs_Active(newJobRole.isIs_Active());
+		/*
+		 * Date updatedDate = (Date) UtilSection.getInstance().getDateandTime();
+		 * ExistJobRole.setJob_Updated_Date(updatedDate);
+		 */
+		return jobRoleDao.updateAllJobRole(newJobRole, ExistJobRole);
 	}
 }

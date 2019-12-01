@@ -1,7 +1,6 @@
 package com.school.dao;
 
 import org.hibernate.Session;
-import org.springframework.beans.factory.annotation.Autowired;
 
 public class BaseDao {
 

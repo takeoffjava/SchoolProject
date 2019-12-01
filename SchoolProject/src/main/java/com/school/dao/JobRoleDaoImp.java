@@ -13,6 +13,8 @@ import org.springframework.stereotype.Repository;
 import com.school.bean.Job_Role;
 import com.school.daointerface.JobRoleDao;
 
+
+
 @Repository
 public class JobRoleDaoImp implements JobRoleDao {
 	@Autowired
