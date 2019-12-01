@@ -9,6 +9,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name = "TBL_Job_Role")
 public class Job_Role {
@@ -46,6 +49,7 @@ public class Job_Role {
 		this.job_Name = job_Name;
 	}
 
+	@JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy hh:mm:ss", locale = "IN")
 	public Date getJob_Created_Date() {
 		return job_Created_Date;
 	}
@@ -54,6 +58,7 @@ public class Job_Role {
 		this.job_Created_Date = job_Created_Date;
 	}
 
+	// @JsonIgnore
 	public Date getJob_Updated_Date() {
 		return job_Updated_Date;
 	}

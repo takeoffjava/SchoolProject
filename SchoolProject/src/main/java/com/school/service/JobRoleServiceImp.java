@@ -1,5 +1,7 @@
 package com.school.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,8 +15,35 @@ public class JobRoleServiceImp implements JobRoleService {
 	JobRoleDao jobRoleDao;
 
 	public boolean addJobRole(Job_Role jobRole) {
-		
+
 		return jobRoleDao.addJobRole(jobRole);
 	}
 
+	public boolean updateJobRole(Job_Role jobRole) {
+
+		return jobRoleDao.updateJobRole(jobRole);
+	}
+
+	public Job_Role findJobRoleById(int jobId) {
+
+		return jobRoleDao.findJobRoleById(jobId);
+
+	}
+
+	public List<Job_Role> findAllJobRoles() {
+
+		return jobRoleDao.findAllJobRoles();
+	}
+
+	public boolean updateAllJobRole(Job_Role newJobRole,Job_Role ExistJobRole) {
+		
+		
+		  if(newJobRole.getJob_Name()!=null) {
+			  ExistJobRole.setJob_Name(newJobRole.getJob_Name());
+		  }
+		  if(newJobRole.isIs_Active()!=ExistJobRole.isIs_Active())
+			  ExistJobRole.setIs_Active(newJobRole.isIs_Active());
+		 
+		return jobRoleDao.updateAllJobRole(newJobRole,ExistJobRole);
+	}
 }
