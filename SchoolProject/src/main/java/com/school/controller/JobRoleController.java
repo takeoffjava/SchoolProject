@@ -35,8 +35,8 @@ public class JobRoleController {
 	}
 
 	@RequestMapping(value = "/addJobRole", method = RequestMethod.POST, headers = "Accept=application/json")
-	public ResponseEntity<Job_Role> insertJobTyps(@RequestBody String JSONContentofPOST) {
-		Job_Role jobRole = JsonConvertor.convertJSON2EntityClass(JSONContentofPOST, Job_Role.class);
+	public ResponseEntity<Job_Role> insertJobTyps(@RequestBody Job_Role jobRole) {
+		//Job_Role jobRole = JsonConvertor.convertJSON2EntityClass(JSONContentofPOST, Job_Role.class);
 		if (jobRoleService.addJobRole(jobRole))
 			return new ResponseEntity<Job_Role>(HttpStatus.CREATED);
 		else
@@ -74,20 +74,19 @@ public class JobRoleController {
 		}
 		return new ResponseEntity<List<Job_Role>>(jobRoleList, HttpStatus.OK);
 	}
-	
-	@PutMapping(value = "/updateAllJobRole", headers = "Accept=application/json")  // Hibernate Merge Example
+
+	@PutMapping(value = "/updateAllJobRole", headers = "Accept=application/json") // Hibernate Merge Example
 	public ResponseEntity<String> updateAllJobRole(@RequestBody String jobReqRole) {
 		Job_Role requestJobRoleObject = JsonConvertor.convertJSON2EntityClass(jobReqRole, Job_Role.class);
 		Job_Role jobRole = jobRoleService.findJobRoleById(requestJobRoleObject.getJob_Id());
 		if (jobRole == null) {
 			return new ResponseEntity<String>(HttpStatus.NOT_FOUND);
 		}
-		if (jobRoleService.updateAllJobRole(requestJobRoleObject,jobRole)) {
+		if (jobRoleService.updateAllJobRole(requestJobRoleObject, jobRole)) {
 			return new ResponseEntity<String>(HttpStatus.CREATED);
 		}
 		return new ResponseEntity<String>(HttpStatus.METHOD_FAILURE);
 
 	}
-
 
 }

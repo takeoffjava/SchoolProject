@@ -12,6 +12,6 @@ public interface JobRoleDao {
 	public Job_Role findJobRoleById(int jobId);
 
 	public List<Job_Role> findAllJobRoles();
-	
-	public boolean updateAllJobRole(Job_Role newJobRole,Job_Role existJobRole);
+
+	public boolean updateAllJobRole(Job_Role newJobRole, Job_Role existJobRole);
 }

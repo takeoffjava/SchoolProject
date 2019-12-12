@@ -14,27 +14,32 @@ public class JobRoleServiceImp implements JobRoleService {
 	@Autowired
 	JobRoleDao jobRoleDao;
 
+	@Override
 	public boolean addJobRole(Job_Role jobRole) {
 
 		return jobRoleDao.addJobRole(jobRole);
 	}
 
+	@Override
 	public boolean updateJobRole(Job_Role jobRole) {
 
 		return jobRoleDao.updateJobRole(jobRole);
 	}
 
+	@Override
 	public Job_Role findJobRoleById(int jobId) {
 
 		return jobRoleDao.findJobRoleById(jobId);
 
 	}
 
+	@Override
 	public List<Job_Role> findAllJobRoles() {
 
 		return jobRoleDao.findAllJobRoles();
 	}
 
+	@Override
 	public boolean updateAllJobRole(Job_Role newJobRole, Job_Role ExistJobRole) {
 
 		if (newJobRole.getJob_Name() != null) {

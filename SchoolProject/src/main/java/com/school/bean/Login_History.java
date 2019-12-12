@@ -14,16 +14,16 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "TBL_Login_History")
 public class Login_History {
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name = "clm_Login_Id", columnDefinition = "bigint(10) unsigned not null", nullable = false)
 	private int emp_Login_Id;
-	
+
 	@OneToOne
 	@JoinColumn(referencedColumnName = "clm_Emp_Id", name = "fk_clm_Emp_Login_Id", columnDefinition = "bigint(10) unsigned not null")
 	private Employee_Details emp_Login_emp_Details;
-	
+
 	@Column(name = "clm_Emp_Loggedin_Time", columnDefinition = "timestamp default now()", nullable = true)
 	private Date emp_LoggedIn_Time;
 
@@ -61,7 +61,5 @@ public class Login_History {
 	public void setEmp_LoggedOut_Time(Date emp_LoggedOut_Time) {
 		this.emp_LoggedOut_Time = emp_LoggedOut_Time;
 	}
-	
-	
 
 }
