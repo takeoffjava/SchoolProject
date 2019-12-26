@@ -22,11 +22,29 @@ class ADASCOOL
 					matrix[i][j] = a;
 
 			}
-		}
+		} 
 		char [] input = in.readString().toCharArray();
-		System.out.println(fn(matrix,input,N));
 
-
+		if(input.length==1)
+		{
+			int cnt=0;
+			for( int i=0;i<N;i++)
+			{
+				for(int j=0;j<N;j++)
+				{
+					if(matrix[i][j]==input[0])
+					{
+						cnt++;
+					}
+				} 
+			}
+			System.out.println(cnt);		 
+		}
+		else
+		{
+			int res = fn(matrix,input,N);		
+			System.out.println(res);		 
+		}
 	} 
 
 	public static int fn(char[][]matrix, char input[], int N)
@@ -65,7 +83,7 @@ class ADASCOOL
 	{
 		int ind = 0,tmp=0;
 
-		while(y<N && ind<N)
+		while(y<N && ind<input.length)
 		{
 			if(matrix[x][y]==input[ind])
 			{
@@ -79,7 +97,7 @@ class ADASCOOL
 			}
 		}
 
-		if(tmp==N)
+		if(tmp==input.length)
 			return true;
 		else
 			return false;
@@ -89,7 +107,7 @@ class ADASCOOL
 	{
 		int ind = 0,tmp=0;
 
-		while(x<N && ind<N)
+		while(x<N && ind<input.length)
 		{
 			if(matrix[x][y]==input[ind])
 			{
@@ -102,7 +120,7 @@ class ADASCOOL
 				return false;
 			}
 		} 
-		if(tmp==N)
+		if(tmp==input.length)
 			return true;
 		else
 			return false;
@@ -114,7 +132,7 @@ class ADASCOOL
 	{
 		int ind = 0,tmp=0;
 
-		while(x>=0 && y<N && ind<N)
+		while(x>=0 && y<N && ind<input.length)
 		{
 			if(matrix[x][y]==input[ind])
 			{
@@ -128,7 +146,7 @@ class ADASCOOL
 				return false;
 			}
 		} 
-		if(tmp==N)
+		if(tmp==input.length)
 			return true;
 		else
 			return false;
@@ -138,7 +156,7 @@ class ADASCOOL
 	public static boolean check_diagonal_downward(char[][]matrix, char input[], int N,int x, int y)
 	{
 		int ind = 0,tmp=0;
-		while(x<N && y<N && ind<N)
+		while(x<N && y<N && ind<input.length)
 		{
 			if(matrix[x][y]==input[ind])
 			{
@@ -152,7 +170,7 @@ class ADASCOOL
 				return false;
 			}
 		} 
-		if(tmp==N)
+		if(tmp==input.length)
 			return true;
 		else
 			return false;
