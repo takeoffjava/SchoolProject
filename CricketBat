@@ -1,0 +1,216 @@
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.InputMismatchException;
+import java.util.List;
+
+public class CricketBat {
+	private static InputReader in = new InputReader(System.in);
+
+	public static void main(String[] args) throws Exception {
+		int N = in.readInt(), i = 0;
+		int C = in.readInt();
+		batsmen batsmen[] = new batsmen[N];
+		batseller batseller[] = new batseller[C];
+		while (i < N) {
+			batsmen[i] = new batsmen();
+			batsmen[i].bat_weight = in.readInt();
+			batsmen[i].bat_max_cost = in.readInt();
+			i++;
+		}
+		i = 0;
+		while (i < C) {
+			batseller[i] = new batseller();
+			batseller[i].bat_weight = in.readInt();
+			batseller[i].bat_min_cost = in.readInt();
+			i++;
+		}
+		List<CricketBat.batsmen> list = Arrays.asList(batsmen);
+		Collections.sort(list);
+		System.out.println(list);
+
+		List<CricketBat.batseller> list1 = Arrays.asList(batseller);
+		Collections.sort(list1);
+
+		System.out.println(list1);
+		
+		
+		
+	}
+
+	private static class InputReader {
+		private InputStream stream;
+		private byte[] buffer;
+		private int currentIndex;
+		private int bytesRead;
+
+		public InputReader(InputStream stream) {
+			this.stream = stream;
+			buffer = new byte[131072];
+		}
+
+		public InputReader(InputStream stream, int bufferSize) {
+			this.stream = stream;
+			buffer = new byte[bufferSize];
+		}
+
+		private int read() throws IOException {
+			if (currentIndex >= bytesRead) {
+				currentIndex = 0;
+				bytesRead = stream.read(buffer);
+				if (bytesRead <= 0) {
+					return -1;
+				}
+			}
+			return buffer[currentIndex++];
+		}
+
+		public int readChar() throws IOException {
+			int c = read();
+			while (!isPrintable(c)) {
+				c = read();
+			}
+			return c;
+		}
+
+		public String readString() throws IOException {
+			int c = read();
+			while (!isPrintable(c)) {
+				c = read();
+			}
+			StringBuilder result = new StringBuilder();
+			do {
+				result.appendCodePoint(c);
+				c = read();
+			} while (isPrintable(c));
+			return result.toString();
+		}
+
+		public int readInt() throws Exception {
+			int c = read();
+			int sign = 1;
+			while (!isPrintable(c)) {
+				c = read();
+			}
+			if (c == '-') {
+				sign = -1;
+				c = read();
+			}
+			int result = 0;
+			do {
+				if ((c < '0') || (c > '9')) {
+					throw new InputMismatchException();
+				}
+				result *= 10;
+				result += (c - '0');
+				c = read();
+			} while (isPrintable(c));
+			return sign * result;
+		}
+
+		public long readLong() throws Exception {
+			int c = read();
+			int sign = 1;
+			while (!isPrintable(c)) {
+				c = read();
+			}
+			if (c == '-') {
+				sign = -1;
+				c = read();
+			}
+			long result = 0;
+			do {
+				if ((c < '0') || (c > '9')) {
+					throw new InputMismatchException();
+				}
+				result *= 10;
+				result += (c - '0');
+				c = read();
+			} while (isPrintable(c));
+			return sign * result;
+		}
+
+		public double readDouble() throws Exception {
+			int c = read();
+			int sign = 1;
+			while (!isPrintable(c)) {
+				c = read();
+			}
+			if (c == '-') {
+				sign = -1;
+				c = read();
+			}
+			boolean fraction = false;
+			double multiplier = 1;
+			double result = 0;
+			do {
+				if ((c == 'e') || (c == 'E')) {
+					return sign * result * Math.pow(10, readInt());
+				}
+				if ((c < '0') || (c > '9')) {
+					if ((c == '.') && (!fraction)) {
+						fraction = true;
+						c = read();
+						continue;
+					}
+					throw new InputMismatchException();
+				}
+				if (fraction) {
+					multiplier /= 10;
+					result += (c - '0') * multiplier;
+					c = read();
+				} else {
+					result *= 10;
+					result += (c - '0');
+					c = read();
+				}
+			} while (isPrintable(c));
+			return sign * result;
+		}
+
+		private boolean isPrintable(int c) {
+			return ((c > 32) && (c < 127));
+		}
+	}
+
+	static class batsmen implements Comparable<batsmen> {
+		int bat_weight;
+		int bat_max_cost;
+
+		public int compareTo(batsmen b) {
+			int c;
+			c = this.bat_weight > b.bat_weight ? 1 : this.bat_weight < b.bat_weight ? -1 : 0;
+			if (c == 0)
+				c = this.bat_max_cost > b.bat_max_cost ? 1 : this.bat_max_cost < b.bat_max_cost ? -1 : 0;
+				return c;
+		}
+
+		@Override
+		public String toString() {
+			// TODO Auto-generated method stub
+			return this.bat_weight+" "+this.bat_max_cost;
+		}
+	}
+
+	static class batseller implements Comparable<batseller> {
+		int bat_weight;
+		int bat_min_cost;
+
+		public int compareTo(batseller b) {
+			int c;
+			c = this.bat_weight > b.bat_weight ? 1 : this.bat_weight < b.bat_weight ? -1 : 0;
+			if (c == 0)
+				c = this.bat_min_cost > b.bat_min_cost ? 1 : this.bat_min_cost < b.bat_min_cost ? -1 : 0;
+				return c;
+		}
+
+		@Override
+		public String toString() {
+			// TODO Auto-generated method stub
+			return this.bat_weight+" "+this.bat_min_cost;
+		}
+	}
+
+}
